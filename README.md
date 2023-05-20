@@ -1,9 +1,4 @@
-# TeluskoMacbookContest
-Hi Everyone, Hope You are doing well
 
-I am very happy to share this Post
-
-Yesterday I participated in Navin Reddy 10-Day Challenge.
 
 Day 1 : Recursion and Memoization
 
