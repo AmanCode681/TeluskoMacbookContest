@@ -1,8 +1,8 @@
 package Day1RecursionAndMemoization;
 
 import java.util.*;
-
-public class RecursiveApproach {
+// breaks for higher value of n
+public class NaiveAproachTLE {
 
 	public static void main(String[] args) {
 		
@@ -21,6 +21,7 @@ public class RecursiveApproach {
 	}
     public static List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans=new ArrayList<>();
+        int[][] dp=new int[numRows][numRows];
         for(int i=0;i<numRows;i++)
         {
             List<Integer> temp=new ArrayList<>();
@@ -31,7 +32,10 @@ public class RecursiveApproach {
                     temp.add(1);
                 else
                 {
-                    temp.add(calculateiCjUsingRecursion(i,j));
+                    int fact1=factorial(i);
+                    int fact2=factorial(j);
+                    int fact3=factorial(i-j);
+                    temp.add(fact1/(fact2*fact3));
                 }
                 
             }
@@ -39,16 +43,15 @@ public class RecursiveApproach {
         }
         return ans;
     }
-    private static int calculateiCjUsingRecursion(int n, int r) {
-		if(r==0)
-			return 1;
-		if(n==0)
-			return 0;
-		
-		int takeN=calculateiCjUsingRecursion(n-1,r-1);
-		int dontTakeN=calculateiCjUsingRecursion(n-1,r);
-		
-		return takeN+dontTakeN;
-	}
+    private static int factorial(int n)
+    {
+    	int f=1;
+    	for(int i=1;i<=n;i++)
+    	{
+    		f=f*i;
+    		
+    	}
+    	return f;
+    }
 	
 }

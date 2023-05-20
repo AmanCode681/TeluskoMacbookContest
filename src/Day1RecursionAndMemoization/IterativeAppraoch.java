@@ -19,19 +19,37 @@ public class IterativeAppraoch {
 			System.out.println();
 		}
 	}
-    public static List<List<Integer>> generate(int numRows) {
+public static List<List<Integer>> generate(int numRows) {
+        
         List<List<Integer>> ans=new ArrayList<>();
+
+
         for(int i=0;i<numRows;i++)
         {
             List<Integer> temp=new ArrayList<>();
-            
+            long val=1;
+            int upper=i;
+            long cumulativeUpper=i;
+            int lower=1;
+            long cumulativeLower=1;
             for(int j=0;j<=i;j++)
             {
                 if(j==0)
                     temp.add(1);
                 else
                 {
-                    temp.add(factorial(i)/(factorial(i-j)*factorial(j)));
+                    int mid=(i+1)/2;
+                    if(j>(mid))
+                    temp.add(temp.get(i-j));
+                    else
+                    {
+                    val=cumulativeUpper/cumulativeLower;
+                    lower++;
+                    upper--;
+                    cumulativeUpper*=upper;
+                    cumulativeLower*=lower;
+                    temp.add((int)val);
+                    }
                 }
                 
             }
@@ -39,13 +57,5 @@ public class IterativeAppraoch {
         }
         return ans;
     }
-    public static int factorial(int num)
-    {
-        int f=1;
-        for(int i=1;i<=num;i++)
-        {
-            f=f*i;
-        }
-        return f;
-    }
+    
 }
