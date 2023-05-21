@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ProductService {
 
@@ -45,9 +47,9 @@ public class ProductService {
 	}
 	public void getProductByName(String name)
 	{
-		products.stream().filter((p)->p.getName().equalsIgnoreCase(name)).forEach((p)->{
-			System.out.println(p);
-		});
+		List<Product> filterProducts=products.stream().filter((p)->p.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
+		filterProducts.stream().forEach((p)->System.out.println(p));
+		
 	}
 	public void getProductByType(String type)
 	{
